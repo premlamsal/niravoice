@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Getting Started with Nirvoice
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is developed for creating Inoices using React Js and Laravel API.
 
 ## Available Scripts
 
