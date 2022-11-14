@@ -1,7 +1,10 @@
 import {
+  
   createBrowserRouter,
   RouterProvider,
+  Navigate,
 } from "react-router-dom";
+
 import Root from "./routes/root";
 import ErrorPage from "./error-page";
 import Contact from "./routes/contact";
@@ -12,12 +15,27 @@ import Purchases from "./pages/Purchases";
 import Categories from "./pages/Categories";
 import Units from "./pages/Units";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
+
+
+const ProtectedRoute = ({ user, children }) => {
+
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return children;
+};
 
 const router = createBrowserRouter([
   {
     path: "/",
     // element: <div>Hello world!</div>,
-    element: <Root />,
+    // element: <Root />,
+    element:<ProtectedRoute user={""}>
+              <Root/>
+            </ProtectedRoute>,
+            
     errorElement: <ErrorPage />,
     children: [
       {
@@ -71,11 +89,18 @@ const router = createBrowserRouter([
     element:<Login/>,
     errorElement: <ErrorPage />,
   },
+
+  {
+    path:"/register",
+    element:<Register/>,
+    errorElement: <ErrorPage />,
+  },
   
 ]);
 
 function App() {
   return (
+    
     <RouterProvider router={router} />
   );
 }
